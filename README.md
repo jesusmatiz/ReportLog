@@ -92,6 +92,13 @@ $this->reportLog->info($exception);
 $this->reportLog->debug($exception);
 </pre>
 
+## Intalación por NPM
+
+Para instalar como paquete desde npm ejecute el siguiente comando.
+<pre>
+npm i @jesusmatiz/reportlog
+</pre>
+
 ## Requerimientos
 
 * PHP >= 5.6
