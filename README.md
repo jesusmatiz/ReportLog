@@ -82,12 +82,12 @@ try {
 Podrá usar los siguientes logs de errores, según la necesidad.
 
 <pre>
-$this->reportLog->emergency($message);
-$this->reportLog->alert($message);
-$this->reportLog->critical($message);
-$this->reportLog->error($message);
-$this->reportLog->warning($message);
-$this->reportLog->notice($message);
-$this->reportLog->info($message);
-$this->reportLog->debug($message);
+$this->reportLog->emergency($exception);
+$this->reportLog->alert($exception);
+$this->reportLog->critical($exception);
+$this->reportLog->error($exception);
+$this->reportLog->warning($exception);
+$this->reportLog->notice($exception);
+$this->reportLog->info($exception);
+$this->reportLog->debug($exception);
 </pre>
