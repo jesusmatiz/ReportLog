@@ -73,7 +73,7 @@ try {
     // Bloque de codigo que puede generar un error
 } catch (\Exception $e) {
     // Capturamos el error
-    $this->error($e);
+    $this->reportLog->error($e);
 }
 </pre>
 
