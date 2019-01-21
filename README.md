@@ -91,3 +91,7 @@ $this->reportLog->notice($exception);
 $this->reportLog->info($exception);
 $this->reportLog->debug($exception);
 </pre>
+
+## Requerimientos
+
+* PHP >= 5.6
