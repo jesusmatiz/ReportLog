@@ -1,4 +1,6 @@
 # ReportLog
+#### *Versión en Español*
+
 ReportLog captura el error y lo almacena en un archivo de texto plano ".txt" o tambien permite almacenarlo en una tabla de la base de datos, según la configuración.
 
 ## Configurando el tipo de almacenamiento
@@ -100,5 +102,119 @@ npm i @jesusmatiz/reportlog
 </pre>
 
 ## Requerimientos
+
+* PHP >= 5.6
+
+#### *Version in English*
+
+ReportLog captures the error and stores it in a plain text file  ".txt " or also allows it to be stored in a database table, depending on the configuration.
+
+## Configuring the storage Type
+
+To configure the storage type, you must modify the following line in the <code>Connection.php</code> file.
+<pre>
+private static $useDB = false; Switch to True If you are using the database
+</pre>
+
+## .txt storage
+
+If you want to store the data in a text file  <code>".txt"</code> You must set the following variable to false.
+
+<pre>
+private static $useDB = false;
+</pre>
+
+When you set log storage to the file <code>.txt</code>, will create a directory with the name of storage and within this will create files named <code>log_2019-01-21.txt</code>, where the date changes according to the day of the error, so you can identify much faster.
+
+### Log storage path in .txt
+
+Log storage is located in the <code>storage</code> directory, which will be created the first time an error is generated, as long as the variable <code>$useDB</code> is set to false;
+
+## Database storage
+
+To store the data to a database table you must run the <code>create_report_logs_table.sql</code> script in your database.
+
+When you import the <code>create_report_logs_table.sql</code> file, you create a table with the required fields for error storage.
+
+If you want to store the data in a table in the database, you must set the following variable to true.
+
+<pre>
+private static $useDB = true;
+</pre>
+
+You must also configure the credentials for the database connection in the following variables.
+
+<pre>
+private static $HOST = 'localhost';
+private static $PORT = 3306;
+private static $DB = 'DATABASE'; // Database Name
+private static $USER = 'USERNAME'; // Database username
+private static $PASS = 'PASSWORD'; // Database Password
+</pre>
+
+The report_logs table has the following fields:
+
+<pre>
+id (Error ID)
+type_error (Error type)
+message (Message error)
+trace (Error propagation trace)
+file (end error propagation file)
+line (line of code close to the error)
+</pre>
+
+##Importing the connection
+
+Import the Connection file
+
+<pre>
+require_once 'Connection.php';
+</pre>
+
+Create a private variable for the ReportLog
+
+<code>private $reportLog;</code>
+
+Initialize the REPORTLOG variable with a new instance.
+
+<pre>
+function _construct() {
+    $this->reportLog = new ReportLog();
+}
+</pre>
+
+To save the log you must set in a try-catch
+
+<pre>
+try
+    code block that can generate an error
+} catch (Exception $e) {
+    We capture the error
+    $this-> ReportLog-> error ($E);
+}
+</pre>
+
+## Types of error logs
+
+You can use the following error logs, as needed.
+
+<pre>
+$this->reportLog->emergency ($exception);
+$this->reportLog->alert ($exception);
+$this->reportLog->critical ($exception);
+$this->reportLog->error ($exception);
+$this->reportLog->warning ($exception);
+$this->reportLog->notice ($exception);
+$this->reportLog->info ($exception);
+$this->reportLog->debug ($exception);
+</pre>
+
+## Installation by NPM
+
+To install as a package from NPM run the following command.
+
+<code>npm I @jesusmatiz/reportlog</code>
+
+## Requirements
 
 * PHP >= 5.6

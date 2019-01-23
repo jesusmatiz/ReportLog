@@ -5,6 +5,7 @@ CREATE TABLE `report_logs` (
 	`trace` TEXT NULL COLLATE 'utf8_unicode_ci',
 	`file` TEXT NULL COLLATE 'utf8_unicode_ci',
 	`line` INT(11) NULL DEFAULT NULL,
+	`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 )
 COLLATE='utf8_unicode_ci'
